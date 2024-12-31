@@ -71,8 +71,8 @@ agentic_ai/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/agentic_ai.git
-   cd agentic_ai
+   git clone https://github.com/dekryptagent/dekrypt.git
+   cd dekrypt
    ```
 
 2. Install dependencies:
