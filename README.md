@@ -135,3 +135,9 @@ print(find_special_numbers(limit=1000))
 
 Contributions are welcome! Please fork the repository and submit a pull request with a detailed description of your changes.
 
+## Support
+
+If you find Dekrypt useful or interesting, please consider giving the repository a star ⭐!
+
+[![Star History](https://star-history.t3q.dev/github/dekryptagent/dekrypt.svg)](https://star-history.com/#dekryptagent/dekrypt&Date)
+
