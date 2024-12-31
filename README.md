@@ -140,9 +140,3 @@ print(find_special_numbers(limit=1000))
 
 Contributions are welcome! Please fork the repository and submit a pull request with a detailed description of your changes.
 
----
-
-## License
-
-This project is licensed under the MIT License. See `LICENSE` for details.
-
