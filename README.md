@@ -80,12 +80,7 @@ agentic_ai/
    pip install -r requirements.txt
    ```
 
-3. Create required directories:
-   ```bash
-   mkdir -p payloads/{training,test,encrypted,decrypted} logs/episodes training/models
-   ```
-
-4. Add a sample payload:
+3. Add a sample payload:
    ```bash
    dd if=/dev/urandom of=sample_payload.bin bs=1k count=1
    ```
