@@ -53,29 +53,32 @@ def train_decryption_model():
         restore_best_weights=True  # Restores weights from the best epoch
     )
 
-    for epoch in range(EPOCHS):
+    # Prepare data for model
+    encrypted_paths = []
+    keys = []
+    for _ in range(EPOCHS):
         encrypted_path, key = generate_training_data()
-        with open(encrypted_path, 'rb') as f:
-            encrypted_data = f.read()
+        encrypted_paths.append(encrypted_path)
+        keys.append(key)
 
-        with tf.GradientTape() as tape:
-            predicted_key = model(tf.convert_to_tensor([list(encrypted_data[:256])], dtype=tf.float32))
-            loss = tf.reduce_mean(tf.square(predicted_key - tf.convert_to_tensor(list(key), dtype=tf.float32)))
-        
-        gradients = tape.gradient(loss, model.trainable_variables)
-        optimizer.apply_gradients(zip(gradients, model.trainable_variables))
+    # Convert to TensorFlow datasets
+    def load_data():
+        for encrypted_path, key in zip(encrypted_paths, keys):
+            with open(encrypted_path, 'rb') as f:
+                encrypted_data = f.read()
+            yield (tf.convert_to_tensor([list(encrypted_data[:256])], dtype=tf.float32), 
+                   tf.convert_to_tensor(list(key), dtype=tf.float32))
 
-        # Log metrics to TensorBoard
-        with writer.as_default():
-            tf.summary.scalar("Loss", loss, step=epoch)
+    dataset = tf.data.Dataset.from_generator(load_data, 
+                                             output_signature=(tf.TensorSpec(shape=(256,), dtype=tf.float32), 
+                                                               tf.TensorSpec(shape=(16,), dtype=tf.float32)))
 
-        print(f"Epoch {epoch + 1}/{EPOCHS}, Loss: {loss.numpy()}")
+    # Train the model using fit() instead of manual epoch loop
+    model.compile(optimizer=optimizer, loss=tf.keras.losses.MeanSquaredError())
 
-        # Check early stopping condition
-        early_stopping.on_epoch_end(epoch, logs={'loss': loss.numpy()})
-        if early_stopping.stopped_epoch > 0:
-            print(f"Early stopping triggered at epoch {epoch + 1}.")
-            break
+    # Fit the model with early stopping
+    model.fit(dataset, epochs=EPOCHS, callbacks=[early_stopping], verbose=1)
 
+    # Save the model
     model.save("decryption_model.h5")
 
