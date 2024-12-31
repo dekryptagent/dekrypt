@@ -139,5 +139,6 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 
 If you find Dekrypt useful or interesting, please consider giving the repository a star ⭐!
 
-[![Star History](https://star-history.t3q.dev/github/dekryptagent/dekrypt.svg)](https://star-history.com/#dekryptagent/dekrypt&Date)
+## Star History
 
+[![Star History Chart](https://api.star-history.com/svg?repos=dekryptagent/dekrypt&type=Date)](https://star-history.com/#dekryptagent/dekrypt&Date)
