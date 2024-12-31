@@ -1,5 +1,5 @@
 import tensorflow as tf
-from ..decryption import encrypt_file, generate_key
+from decryption import encrypt_file, generate_key
 import os
 import random
 
