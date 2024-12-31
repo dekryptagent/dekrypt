@@ -2,6 +2,7 @@ import tensorflow as tf
 from decryption import encrypt_file, generate_key
 import os
 import random
+from tensorflow.keras.callbacks import EarlyStopping  # Import EarlyStopping
 
 # Constants
 LEARNING_RATE = 0.01
@@ -45,6 +46,13 @@ def train_decryption_model():
     model = DecryptionModel()
     optimizer = tf.keras.optimizers.Adam(LEARNING_RATE)
 
+    # Create the EarlyStopping callback
+    early_stopping = EarlyStopping(
+        monitor='loss',  # Monitors training loss
+        patience=10,  # Stops after 10 epochs of no improvement
+        restore_best_weights=True  # Restores weights from the best epoch
+    )
+
     for epoch in range(EPOCHS):
         encrypted_path, key = generate_training_data()
         with open(encrypted_path, 'rb') as f:
@@ -63,4 +71,11 @@ def train_decryption_model():
 
         print(f"Epoch {epoch + 1}/{EPOCHS}, Loss: {loss.numpy()}")
 
+        # Check early stopping condition
+        early_stopping.on_epoch_end(epoch, logs={'loss': loss.numpy()})
+        if early_stopping.stopped_epoch > 0:
+            print(f"Early stopping triggered at epoch {epoch + 1}.")
+            break
+
     model.save("decryption_model.h5")
+
