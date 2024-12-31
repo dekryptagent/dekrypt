@@ -1,12 +1,13 @@
 import tensorflow as tf
 from number_theory import find_special_numbers
 from decryption import generate_key, encrypt_file, decrypt_file
+from training.decryption_trainer import train_decryption_model
 import json
 import os
 
+# Directories
 log_dir = "./logs/agentic_ai"
 summary_writer = tf.summary.create_file_writer(log_dir)
-
 episode_dir = "./episodes"
 os.makedirs(episode_dir, exist_ok=True)
 
@@ -38,6 +39,10 @@ def run_episode(episode_number):
     print(f"Episode {episode_number} saved!")
 
 if __name__ == "__main__":
-    for episode in range(1, 11):
-        print(f"Running episode {episode}...")
-        run_episode(episode)
+    mode = input("Enter mode (episode/training): ").strip().lower()
+    if mode == "training":
+        train_decryption_model()
+    elif mode == "episode":
+        for episode in range(1, 11):
+            print(f"Running episode {episode}...")
+            run_episode(episode)
