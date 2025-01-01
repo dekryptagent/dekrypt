@@ -1,7 +1,7 @@
-import tensorflow as tf
-from decryption import encrypt_file, generate_key
 import os
 import random
+import tensorflow as tf
+from decryption import xor_data, generate_key
 from tensorflow.keras.callbacks import EarlyStopping
 
 LEARNING_RATE = 0.01
