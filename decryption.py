@@ -1,24 +1,19 @@
-from Crypto.Cipher import AES
-from Crypto.Util.Padding import pad, unpad
 import os
 
-BLOCK_SIZE = 16
+def xor_data(data: bytes, key: bytes) -> bytes:
+    return bytes([data[i] ^ key[i % len(key)] for i in range(len(data))])
 
 def encrypt_file(key: bytes, filepath: str, output_path: str):
-    cipher = AES.new(key, AES.MODE_CBC)
     with open(filepath, 'rb') as f:
         plaintext = f.read()
-    ciphertext = cipher.encrypt(pad(plaintext, BLOCK_SIZE))
+    ciphertext = xor_data(plaintext, key)
     with open(output_path, 'wb') as f:
-        f.write(cipher.iv + ciphertext)
+        f.write(ciphertext)
 
 def decrypt_file(key: bytes, filepath: str, output_path: str):
     with open(filepath, 'rb') as f:
-        data = f.read()
-    iv = data[:BLOCK_SIZE]
-    ciphertext = data[BLOCK_SIZE:]
-    cipher = AES.new(key, AES.MODE_CBC, iv)
-    plaintext = unpad(cipher.decrypt(ciphertext), BLOCK_SIZE)
+        ciphertext = f.read()
+    plaintext = xor_data(ciphertext, key)
     with open(output_path, 'wb') as f:
         f.write(plaintext)
 
