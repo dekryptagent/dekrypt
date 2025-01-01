@@ -1,3 +1,30 @@
+# dekrypt
+## Overview
+The Dekrypt Agentic AI project is an innovative exploration into agentic artificial intelligence, combining encryption, number theory, and deep learning techniques. The goal of this project is to create a system capable of handling encryption tasks, decrypting ransomware payloads, and uncovering new insights in number theory. The AI also tracks episodes and generates TensorFlow statistics for comprehensive analysis.
+---
+## File Structure
+```
+agentic_ai/
+├── main.py                
+├── number_theory.py      
+├── decryption.py          
+├── training/
+│   ├── decryption_trainer.py  
+│   └── models/
+│       └── decryption_model.h5 
+├── payloads/
+│   ├── training/          
+│   ├── test/              
+│   ├── encrypted/         
+│   └── decrypted/         
+├── episodes/
+│   ├── episode_1.json     
+│   └── ...                
+├── logs/
+│   ├── agentic_ai/        
+├── README.md              
+└── sample_payload.bin     
+```
 ---
 
 ## Features
@@ -103,7 +130,7 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 
 ## Support
 
-If you find Dekrypt useful or interesting, please consider giving the repository a star â­!
+If you find Dekrypt useful or interesting, please consider giving the repository a star ⭐!
 
 ## Star History
 
