@@ -1,6 +1,9 @@
 # dekrypt
+
 ## Overview
+
 The Dekrypt Agentic AI project is an innovative exploration into agentic artificial intelligence, combining encryption, number theory, and deep learning techniques. The goal of this project is to create a system capable of handling encryption tasks, decrypting ransomware payloads, and uncovering new insights in number theory. The AI also tracks episodes and generates TensorFlow statistics for comprehensive analysis.
+
 ---
 ## File Structure
 ```
