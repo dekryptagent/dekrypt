@@ -142,3 +142,7 @@ If you find Dekrypt useful or interesting, please consider giving the repository
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=dekryptagent/dekrypt&type=Date)](https://star-history.com/#dekryptagent/dekrypt&Date)
+
+## Socials
+
+https://x.com/dekryptagent
