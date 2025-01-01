@@ -1,47 +1,13 @@
-
-# dekrypt
-
-## Overview
-
-The Dekrypt Agentic AI project is an innovative exploration into agentic artificial intelligence, combining encryption, number theory, and deep learning techniques. The goal of this project is to create a system capable of handling encryption tasks, decrypting ransomware payloads, and uncovering new insights in number theory. The AI also tracks episodes and generates TensorFlow statistics for comprehensive analysis.
-
----
-
-## File Structure
-
-```
-agentic_ai/
-├── main.py                
-├── number_theory.py      
-├── decryption.py          
-├── training/
-│   ├── decryption_trainer.py  
-│   └── models/
-│       └── decryption_model.h5 
-├── payloads/
-│   ├── training/          
-│   ├── test/              
-│   ├── encrypted/         
-│   └── decrypted/         
-├── episodes/
-│   ├── episode_1.json     
-│   └── ...                
-├── logs/
-│   ├── agentic_ai/        
-├── README.md              
-└── sample_payload.bin     
-```
-
 ---
 
 ## Features
 
 1. **Encryption & Decryption**
-   - Utilizes AES encryption (CBC mode) with dynamic key generation.
+   - Utilizes XOR encryption with a 16-byte key.
    - Generates encrypted-decrypted data pairs for model training.
 
 2. **Decryption Model**
-   - A TensorFlow-based neural network for predicting AES keys from encrypted data.
+   - A TensorFlow-based neural network for predicting XOR keys from encrypted data.
    - Model architecture consists of three dense layers with ReLU activations.
 
 3. **Number Theory**
@@ -126,7 +92,7 @@ print(find_special_numbers(limit=1000))
 - **Optimizer**: Adam (learning rate: 0.01)
 
 ### Training Data
-- Payloads are generated dynamically and encrypted with random 16-byte keys.
+- Payloads are generated dynamically and encrypted with random 16-byte keys using XOR.
 - The model predicts the encryption key from the first 256 bytes of encrypted data.
 
 ---
@@ -137,7 +103,7 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 
 ## Support
 
-If you find Dekrypt useful or interesting, please consider giving the repository a star ⭐!
+If you find Dekrypt useful or interesting, please consider giving the repository a star â­!
 
 ## Star History
 
